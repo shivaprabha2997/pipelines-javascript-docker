@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_USER = "shivadocker2997"
-        IMAGE_NAME = "info"
+        IMAGE_NAME = "take_it"
         IMAGE_TAG = "0.1"
     }
 
@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/shivaprabha2997/pipelines-javascript-docker.git'
+                git branch: 'main', url: 'https://github.com/Surya8442/pipelines-javascript-docker.git'
             }
         }
 
@@ -20,6 +20,7 @@ pipeline {
                 sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
+
         stage('Push to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Docker_CRED', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
@@ -34,8 +35,8 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker rm -f info || true'
-                sh 'docker run -d -p 9000:8080 --name info ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}'
+                sh 'docker rm -f take_it || true'
+                sh 'docker run -d -p 5121:8080 --name take_it ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}'
             }
         }
 

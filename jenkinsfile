@@ -20,7 +20,6 @@ pipeline {
                 sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
-
         stage('Push to DockerHub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'Docker_CRED', usernameVariable: 'USER', passwordVariable: 'PASS')]) {

@@ -36,7 +36,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 sh 'docker rm -f take_it || true'
-                sh 'docker run -d -p 5121:8080 --name take_it ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}'
+                sh 'docker run -d -p 9000:8080 --name take_it ${DOCKER_USER}/${IMAGE_NAME}:${IMAGE_TAG}'
             }
         }
 
